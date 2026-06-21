@@ -18,13 +18,14 @@ PySpark / Spark SQL
 Unity Catalog (table governance, automatic data lineage)
 Event-driven triggers (file-arrival based orchestration)
 
-Data Quality & Validation
+**Data Quality & Validation**
 
 Each ingestion notebook performs inline data quality checks before data is allowed downstream — null checks on key fields, invalid amount detection, and splitting of records into valid/invalid sets.
 ![Data quality and validation](docs/screenshots/data_quality_validation.png)
 
 Every pipeline run logs its own execution metadata (task name, status, record counts, timestamp) to a processing_log table — giving the pipeline basic self-observability.
 ![Processing log sample](docs/screenshots/processing%20log_sample.png)
+
 
 **Data Lineage**
 
@@ -33,6 +34,7 @@ enriched_orders lineage (5 upstream sources → enrichment → 3 downstream targ
 ![Enriched orders lineage](docs/screenshots/enriched_orders_lineage.png)
 
 ![Orders target lineage](docs/screenshots/orders_target_lineage.png)
+
 
 **SCD Type 2 — Dimension History Tracking**
 
@@ -47,7 +49,7 @@ Products — version history:
 Orders:
 ![Orders SCD](docs/screenshots/orders_scd.png)
 
-A bug I found and fixed along the way
+**A bug I found and fixed along the way**
 
 While testing, I noticed the initial merge implementation expired and re-inserted every matching record on every single run, regardless of whether any tracked attribute had actually changed. This meant re-running the pipeline with unchanged source data still produced new "versions" — silently inflating the dimension tables with duplicate, identical rows instead of real history.
 
