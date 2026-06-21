@@ -9,5 +9,5 @@ Parallel ingestion — customers_load, inventory_load, orders_load, products_loa
 Validation — data_validation consolidates and validates records across all sources.
 Enrichment — data_enrichment joins and enriches the validated data (e.g. computing profit margin, estimated CLV, seasonal/time-of-day attributes).
 Final merge — 08_final_merge_operation merges enriched data into target tables in Unity Catalog using SCD Type 2 logic, and writes a run summary to a processing_log table.
-
+![Architecture](docs/screenshots/Architecture.png)
 
